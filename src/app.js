@@ -1,13 +1,7 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
-
-var teste1 = require("./teste1");
-var teste2 = require("./teste2");
-var teste3 = require("./teste3");
-var teste4 = require("./teste4");
-var teste5 = require("./teste5");
-
+const express = require('express');
+const bodyParser = require('body-parser');
+const routes = require('./routes')
+const app = express();
 
 app.set('view engine', 'jade');
 
@@ -28,13 +22,7 @@ app.get('/', function(req, res){
   `);
 });
 
-app.get("/user", teste1.getUser);
-app.get("/users", teste1.getUsers);
-app.post("/users", teste2)
-app.delete("/users", teste3)
-app.put("/users", teste4)
-app.get("/users/access", teste5);
-
+app.use(routes)
 
 const port  = 3000;
 app.listen(port, function(){
